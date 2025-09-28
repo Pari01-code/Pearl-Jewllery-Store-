@@ -289,6 +289,8 @@ function renderCartModal() {
   document.getElementById('cart-total').innerText = `Total: ₹${total.toLocaleString()}`;
 }
 
+
+
 function renderWishlistModal() {
   const container = document.getElementById('wishlist-items');
   container.innerHTML = '';
@@ -336,7 +338,6 @@ function scrollToProducts() {
 
 updateCounts();
 
-
 function toggleMenu() {
   const nav = document.getElementById('mobile-nav');
   nav.classList.toggle('show');
@@ -357,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
 
 
