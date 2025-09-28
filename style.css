@@ -245,36 +245,49 @@ font-size: 0.95rem;
 @media (max-width: 600px) {
 header {
 flex-direction: column;
-align-items: flex-start;
+align-items: stretch;
 padding: 1rem;
 gap: 1rem;
 }
 
 .header-left {
-width: 100%;
+display: flex;
 justify-content: space-between;
+width: 100%;
 }
 
 .search-box {
 width: 100%;
 padding: 0.5rem;
+margin-top: 0.5rem;
 }
 
 .header-right {
 width: 100%;
-justify-content: center;
 }
 
 nav {
 display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 1rem;
+flex-direction: column;
+align-items: center;
+gap: 0.75rem;
 width: 100%;
 }
 
 nav a {
-font-size: 0.9rem;
-margin: 0;
+font-size: 1rem;
+padding: 0.5rem;
+width: 100%;
+text-align: center;
+border: 1px solid #f0f0f0;
+border-radius: 5px;
+background: #fff;
+}
+
+nav a:hover {
+background: #FF69B4;
+color: #fff;
 }
 }
+
+
