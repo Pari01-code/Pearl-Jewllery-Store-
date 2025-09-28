@@ -226,3 +226,55 @@ footer { text-align:center; padding:2rem; background:#FFFFFF; color:#888; font-s
 #proceed-payment:hover {
   background: #3A3A4A;
 }
+
+/* --------- Responsive Header & Search --------- */
+
+/* Tablet screens */
+@media (max-width: 900px) {
+.search-box {
+width: 300px;
+}
+
+nav a {
+margin-left: 1rem;
+font-size: 0.95rem;
+}
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+header {
+flex-direction: column;
+align-items: flex-start;
+padding: 1rem;
+gap: 1rem;
+}
+
+.header-left {
+width: 100%;
+justify-content: space-between;
+}
+
+.search-box {
+width: 100%;
+padding: 0.5rem;
+}
+
+.header-right {
+width: 100%;
+justify-content: center;
+}
+
+nav {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 1rem;
+width: 100%;
+}
+
+nav a {
+font-size: 0.9rem;
+margin: 0;
+}
+}
