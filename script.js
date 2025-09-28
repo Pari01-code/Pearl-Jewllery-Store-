@@ -336,6 +336,13 @@ function scrollToProducts() {
 
 updateCounts();
 
+
+function toggleMenu() {
+  const nav = document.getElementById('mobile-nav');
+  nav.classList.toggle('show');
+}
+
+
 // ---------- Proceed to Payment ----------
 document.addEventListener('DOMContentLoaded', () => {
   const proceedBtn = document.getElementById('proceed-payment');
@@ -350,5 +357,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
 
