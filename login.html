@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pearl Jewels — Login / Signup</title>
+<style>
+body { font-family: 'Poppins', sans-serif; background:#FAFAFA; color:#1F1F2E; display:flex; justify-content:center; align-items:center; height:100vh; margin:0;}
+.container { background:#E6B0D4; padding:2rem; border-radius:10px; width:320px;}
+input { width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:5px; border:1px solid #ddd; background:#FAFAFA; color:#1F1F2E;}
+button { width:100%; padding:0.8rem; background:#1F1F2E; color:#FAFAFA; border:none; border-radius:5px; cursor:pointer; margin-bottom:0.5rem;}
+button:hover { background:#3A3A4A; }
+p { text-align:center; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2 id="form-title">Login</h2>
+  <input type="email" id="email" placeholder="Email" />
+  <input type="password" id="password" placeholder="Password" />
+  <input type="text" id="name" placeholder="Full Name" style="display:none;" />
+  <button id="submit-btn">Login</button>
+  <p id="toggle">Don't have an account? <span style="cursor:pointer;color:#1F1F2E;">Signup</span></p>
+</div>
+
+<script>
+let isLogin = true;
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const nameInput = document.getElementById('name');
+const formTitle = document.getElementById('form-title');
+const submitBtn = document.getElementById('submit-btn');
+const toggleText = document.getElementById('toggle').querySelector('span');
+
+toggleText.addEventListener('click', ()=> {
+  isLogin = !isLogin;
+  nameInput.style.display = isLogin ? 'none' : 'block';
+  formTitle.innerText = isLogin ? 'Login' : 'Signup';
+  submitBtn.innerText = isLogin ? 'Login' : 'Signup';
+});
+
+submitBtn.addEventListener('click', async ()=> {
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+  const name = nameInput.value.trim();
+
+  if (!email || !password || (!isLogin && !name)) { alert('Fill all fields'); return; }
+
+  // USE RELATIVE PATHS (so same host works in production and local)
+  const url = isLogin ? '/api/login' : '/api/signup';
+  const body = isLogin ? { email, password } : { name, email, password };
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+    if (data.success && data.token) {
+      localStorage.setItem('userToken', data.token);
+      window.location.href = 'index.html';
+    } else {
+      alert(data.message || 'Error: could not authenticate');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Network error');
+  }
+});
+</script>
+
+</body>
+</html>
