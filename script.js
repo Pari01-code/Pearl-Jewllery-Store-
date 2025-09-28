@@ -150,7 +150,10 @@ function applyFilters() {
   const type = document.getElementById('filter-type').value;
   const material = document.getElementById('filter-material').value;
   const sort = document.getElementById('sort-price').value;
-  const search = document.getElementById('search-input').value.trim().toLowerCase();
+
+  // Safer search handling
+  const searchInput = document.getElementById('search-input');
+  const search = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
   filteredProducts = allProducts.filter(p => {
     if (type !== 'all' && p.category && p.category.toLowerCase() !== type.toLowerCase()) return false;
@@ -170,6 +173,7 @@ function applyFilters() {
 
   renderProducts(filteredProducts);
 }
+
 
 function resetFilters() {
   document.getElementById('filter-type').value = 'all';
@@ -346,3 +350,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
